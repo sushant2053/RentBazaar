@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A renting platform." />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- Icon Image -->
+    <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+    <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+    <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+  <title>User Dashboard</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+main {
+    border: 8px solid rgb(0, 0, 0);
+    border-radius: 30px;
+    border-style: dashed;
+    padding: 20px;  
+    max-width: 600px;
+    margin: 20px auto;
+}
+#rentForm {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+#rentForm input, textarea, select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid #ff4500;
+}
+textarea{
+    height: 100px;
+}
+
+#Post {
+    display: block;
+    background-color: #ff4500;
+    color: #ffffff;
+    border: 2px solid #ff4500;
+    border-radius: 50px;
+    width: 150px;
+    margin-left: 250px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#Backtodashboard {
+    display: block;
+    background-color: #ff4500;
+    color: #ffffff;
+    border: 2px solid #ff4500;
+    border-radius: 50px;
+    width: 150px;
+    margin-left: 250px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#Post:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 238, 0);
+    border: 2px solid rgb(255, 238, 0);
+}
+
+#Backtodashboard:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 238, 0);
+    border: 2px solid rgb(255, 238, 0);
+}
+
+#namebox{
+    display: none;
+}
+
+#View{
+    display: none;
+}
+
+#extlab{
+    display: none;
+}
+
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="search-block">
+          <a href="Website.html">
+            <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+          </a>
+            <form id="search-form">
+                <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+            </form>
+    
+            <form id="search-form-2">
+                <div id="l1">
+                    <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                    </div>
+                    <div id="l2"></div>
+            </form>
+        </div>
+</div>
+
+<main>
+    <h1>Enter your item details.</h1>
+        <form id="rentForm" enctype="multipart/form-data">
+            <label for="itemName">Book Title:</label>
+            <input type="text" id="itemName" name="itemName" placeholder="Enter your item name" required>
+
+            <label for="itemDescription">Description:</label>
+            <textarea id="itemDescription" name="itemDescription" placeholder="Describe your item in brief" required></textarea>
+
+            <label for="itemCondition">Condition:</label>
+            <select id="itemCondition" name="itemCondition" required>
+                <option value="">Choose One</option>
+                <option value="Brand new">Brand New</option>
+                <option value="Like new">Like New</option>
+                <option value="Decent">Decent</option>
+                <option value="Bad">Bad</option>
+                <option value="Falling Apart">Falling Apart</option>
+            </select>
+
+
+            <label for="itemType">What Genre does your book fall under? :</label>
+            <select id="itemType" name="itemType" required>
+                <option value="">Select One</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Comic">Comic</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Others">Others</option>
+            </select>
+            
+            <label for="itemName">Rent Price: Rs.</label>
+            <input type="number" id="itemPrice" name="itemName" placeholder="Enter the rent to be charged per day" required>
+            
+            <label for="itemImage">Upload Image:</label>
+            <input type="file" id="selbtn" name="itemImage" accept="image/*" >
+
+            <div class="table">
+                <table>
+
+                </table>
+            </div>
+            <input type="text" id="namebox" type="hidden"> <label id="extlab" type="hidden"></label>
+            <h2><span id="namebox1"></span></h2>
+            <button type="button" id="Post">Submit</button> <label id="upprogress"></label>
+            <button type="button" id="View" >Get</button>
+            <button type="button" id="Backtodashboard" onclick="goToDashboard()" >Back</button>
+        </form>
+    </main>
+    <div id="footer">
+        &copy; 2023 RentBazaar
+    </div>    
+    <script type="module" src="../static/js/Firebase-user.js"></script>
+    <script defer type="module" src="../static/js/Firebase.js"></script>
+    <script type="text/javascript" src="../static/js/Redirect.js"></script>
+
+
+  
+</body>
+</html>

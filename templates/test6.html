@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+  <title>Category Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #ffffff;
+    
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    section {
+      
+      padding: 20px;
+    }
+
+    .item {
+      background-color: #ffe600;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+    }
+
+    
+    .card {
+      background-color: #ff4500;
+      border: 18px solid #ffffff;
+      border-style:double;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      margin: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    .card1 {
+      
+      background-color: #ffe600;
+      border: 8px solid #ffffff;
+      border-style:dashed;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      height: auto;
+      min-height: 300px;
+      width: auto;
+      min-width: 300px;
+      
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit:fill;
+    }
+    
+    .card-content {
+      padding: 10px;
+    }
+
+    p{
+      color: black;
+      font-style: oblique;
+      font-weight: bold;
+      font-family: 'molle';
+      font-size: x-large;
+    }
+
+    #myButton{
+      color: #ffffff;
+      background-color: #000000;
+      border: 18px solid #ffffff;
+      border-style:double;
+      width: auto;
+    }
+
+    #myButton:hover {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="search-block">
+      <a href="Website.html">
+        <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+      </a>
+        <form id="search-form">
+          <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+        </form>
+
+        <form id="search-form-2">
+          <div id="l1">
+            <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+            </div>
+            <div id="l2"></div>
+        </form>
+    
+      </div>
+      
+ 
+  </div>
+ 
+  <div id="cards-container"></div>    
+  <div id="footer">
+    &copy; 2023 RentBazaar
+  </div>
+
+  <script type="module" src="../static/js/Firebase-user.js"></script>
+  <script type="text/javascript" src="../static/js/Redirect.js"></script>
+  <script type="module">
+    // Your existing Firebase and other imports...
+// Importing the firebase functions needed from the SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getFirestore, doc, getDocs, setDoc, collection, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// Initialize Cloud Firestore and get a reference to the service
+
+const firebaseConfig = {
+  apiKey: "AIzaSyATOQvBvdsCX38IvyGUjvYs9kHE6aB4iMM",
+  authDomain: "rentbazaar-aea34.firebaseapp.com",
+  projectId: "rentbazaar-aea34",
+  storageBucket: "rentbazaar-aea34.appspot.com",
+  messagingSenderId: "644873776624",
+  appId: "1:644873776624:web:6d75f162996172d0dc0135",
+  measurementId: "G-C2S3E30YTY"
+};
+
+
+// RentBazaar app's Firebase configuration
+const app = initializeApp(firebaseConfig);
+const clouddb = getFirestore();
+
+
+
+    // Rest of your existing code...
+    var files = [];
+    var reader = new FileReader();
+    var namebox = document.getElementById('namebox');
+    var extlab = document.getElementById('extlab');
+    var myimg = document.getElementById('myimg');
+    var proglab = document.getElementById('upprogress');
+    var SelBtn = document.getElementById('selbtn');
+    var UpBtn = document.getElementById('upbtn');
+    var DownBtn = document.getElementById('downbtn');
+
+    // Replace "yourCollection" with your actual collection name
+    const collectionRef = collection(clouddb, "Rent");
+
+    async function fetchDataAndDisplay() {
+      const querySnapshot = await getDocs(collectionRef);
+
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+
+        // Create card element
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        // Add image if available
+        if (data.imageUrl) {
+          const img = document.createElement("img");
+          img.src = data.imageUrl;
+          card.appendChild(img);
+        }
+
+        // Add string data
+        const cardContent = document.createElement("div");
+        cardContent.classList.add('card-content');
+
+        const textData = document.createElement("div");
+        textData.classList.add('Item-Name');
+        textData.style.fontFamily= "molle";
+        textData.style.fontSize= "x-large";
+        textData.style.fontStyle= "oblique";
+        textData.textContent = 'Item Name: '+ data.itemName;
+        card.appendChild(textData);
+
+        const textData1 = document.createElement("div");
+        textData1.classList.add('Item-Description');
+        textData1.style.fontFamily= "molle";
+        textData1.style.fontSize= "x-large";
+        textData1.style.fontStyle= "oblique";
+        textData1.textContent = 'Description: '+ data.itemDescription;
+        card.appendChild(textData1);
+
+        const textData2 = document.createElement("div");
+        textData2.classList.add('Item-Condition');
+        textData2.style.fontFamily= "molle";
+        textData2.style.fontSize= "x-large";
+        textData2.style.fontStyle= "oblique";
+        textData2.textContent = 'Condition: '+ data.itemCondition;
+        card.appendChild(textData2);
+
+        const textData3 = document.createElement("div");
+        textData3.classList.add('Item-Type');
+        textData3.style.fontFamily= "molle";
+        textData3.style.fontSize= "x-large";
+        textData3.style.fontStyle= "oblique";
+        textData3.textContent = 'Type: '+ data.itemType;
+        card.appendChild(textData3);
+
+        const textData4 = document.createElement("div");
+        textData4.classList.add('Item-Name');
+        textData4.style.fontFamily= "molle";
+        textData4.style.fontSize= "x-large";
+        textData4.style.fontStyle= "oblique";
+        textData4.textContent = 'Price/Day: Rs.'+ data.itemPrice;
+        card.appendChild(textData4);
+
+        // Create a button element
+            const button = document.createElement('button');
+
+        // Set button properties
+        button.textContent = 'Rent It!';
+        button.id = 'myButton';
+        button.className = 'btn'; // You can add additional CSS classes for styling
+
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+          alert('Ad Deleted!');
+        });
+
+        // Append the button to an existing HTML element (e.g., a div with id 'buttonContainer')
+        
+        card.appendChild(button);
+        // Append the card to the body
+        card.appendChild(cardContent);
+        document.body.appendChild(card);
+      });
+    }
+    
+    fetchDataAndDisplay();
+
+       
+
+    
+
+    reader.onload = function(){
+      myimg.src = reader.result;
+    }
+
+    function GetExtName(file) {
+      var temp = file.name.split('.');
+      var ext = temp.slice((temp.length - 1),(temp.length));
+      return '.' + ext[0];
+    }
+
+    function GetFileName(file) {
+      var temp = file.name.split('.');
+      var fname = temp.slice(0,-1).join('.');
+      return fname;
+    }
+
+    async function UploadProcess(){
+        var ImgToUpload = files[0];
+        var ImgName = namebox.value + extlab.innerHTML;
+        const metaData = {
+            contentType: ImgToUpload.type
+        }
+        const storage = getStorage();
+        const stroageRef = sRef(storage, "Images/"+ImgName);
+        const UploadTask = uploadBytesResumable(stroageRef, ImgToUpload, metaData);
+
+        UploadTask.on('state-changed', (snapshot)=>{
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            proglab.innerHTML = "Upload "+ progress + "%";
+        },
+        (error) =>{
+            alert("error: image not uploded!");
+        },
+        ()=>{
+            getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+                SaveURLtoFirestore(downloadURL);
+
+            });
+        }
+        );
+    }
+
+async function SaveURLtoFirestore(url){
+    var name = namebox.value;
+    var ext = extlab.innerHtml;
+
+    var ref = doc(clouddb, "Rent/home1");
+
+    await setDoc(ref,{
+        ImageName: (name+ext),
+        ImageURL: url
+    })
+}
+
+async function GetImagefromFirestore(){
+    
+    var ref = doc(clouddb, "Rent/"+"home1");
+    const docSnap = await getDoc(ref);
+
+    if(docSnap.exists()){
+        myimg.src = docSnap.data().ImageURL;
+    }
+}
+
+//GetImagefromFirestore();
+
+
+
+  </script>
+
+</body>
+</html>

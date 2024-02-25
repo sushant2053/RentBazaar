@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Bar Example</title>
+</head>
+<body>
+  <input type="text" id="searchInput" placeholder="Search items...">
+  <ul id="searchResults"></ul>
+
+  <script defer type="module" src="app.js"></script>
+</body>
+</html>
+
+
+<script defer type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  // Your Firebase configuration
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', debounce(handleSearch, 300));
+
+async function handleSearch() {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  // Clear previous results
+  searchResults.innerHTML = '';
+
+  // Perform Firestore query
+  const q = query(collection(db, 'items'), where('itemName', '>=', searchTerm));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach(doc => {
+    const itemName = doc.data().itemName;
+    const li = document.createElement('li');
+    li.textContent = itemName;
+    searchResults.appendChild(li);
+  });
+}
+
+// Function to debounce input
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}

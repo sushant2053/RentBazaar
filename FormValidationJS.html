@@ -1,0 +1,58 @@
+<script type="text/javascript">
+	function validateUser()
+	{
+		var fname = document.getElementById("firstname").value;
+		var mname = document.getElementById("middlename").value;
+		var lname = document.getElementById("lastname").value;
+		var email = document.getElementById("emailid").value;
+		var uname = document.getElementById("username").value;
+		var pwd = document.getElementById("userpass").value;
+		
+		if(fname=='' || lname == '' || email == '' || uname == '' || pwd == '')
+		{
+			alert('The form important elements cannot be empty');
+		}
+		
+	
+	}
+	
+	function clearUser()
+	{
+		document.getElementById('firstname').value='';
+		document.getElementById("middlename").value='';
+		document.getElementById("lastname").value='';
+		document.getElementById("emailid").value='';
+		document.getElementById("username").value='';
+		document.getElementById("userpass").value='';
+	}
+</script>
+
+<form name="signupform" action="#" method="#">
+	<table>
+		<tr>
+			<th>FirstName: <b style="color:red;">*</b> </th><td><input type="text" id="firstname" placeholder="First Name"></td>
+		</tr>
+		<tr>
+			<th>MiddleName: </th><td><input type="text" id="middlename" placeholder="Middle Name"></td>
+		</tr>
+		<tr>
+			<th>LastName: <b style="color:red;">*</b></th><td><input type="text" id="lastname" placeholder="Last Name"></td>
+		</tr>
+		<tr>
+			<th>EmailID: <b style="color:red;">*</b></th><td><input type="text" id="emailid" placeholder="Email ID"></td>
+		</tr>
+		<tr>
+			<th>Username: <b style="color:red;">*</b></th><td><input type="text" id="username" placeholder="User Name"></td>
+		</tr>
+		<tr>
+			<th>Password: <b style="color:red;">*</b></th><td><input type="password" id="userpass" placeholder="Password"></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<input type="button" id="register" value="Register" onclick="validateUser();">
+				<input type="button" id="reset" value="Reset" onclick="clearUser();">
+			</td>
+		</tr>
+	</table>
+</form>

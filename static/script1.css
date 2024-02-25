@@ -1,0 +1,178 @@
+body {
+  color: rgb(0, 0, 0);
+  font-family:'Courier New', Courier, monospace;
+  background: #ffffff;
+}
+
+.btn {
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 18px;
+  font-family:cursive;
+  text-decoration: none;
+  padding: 9px 8px 8px 1px;
+  border: 2px solid #ff4500;
+  border-radius: 50px;
+  transition: all;
+  text-align: center;
+  image-rendering:auto;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.btn1 {
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 18px;
+  font-family:cursive;
+  text-decoration: none;
+  padding: 8px 8px 5px 2px;
+  border: 2px solid #ff4500;
+  border-radius: 50px;
+  transition:all;
+  text-align: center;
+  image-rendering:auto;
+  width: 200px;
+}
+.Signin {
+  color: #ffffff;
+  background-color: #ff4500;
+  cursor: pointer;
+  font-size: 18px;
+  font-family:sans-serif;
+  text-decoration: solid;
+  padding: 12px 8px 12px 2px;
+  border: 2px solid #ff4500;
+  border-radius: 10px;
+  transition:all;
+  text-align: center;
+  width: 200px;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  max-width:auto;
+  height:100%;
+  max-height: auto;
+}
+
+.left-side {
+  flex: 2;
+  padding: 40px;
+  height: auto;
+}
+
+.left-side img {
+  width: 100%; /* Make the image fill its container */
+  height: 100%; /* Maintain the image's aspect ratio */
+  display: block; /* Remove any extra spacing */
+  border-radius: 25px;
+}
+
+.search-block {
+  flex: 1;
+  padding: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  
+}
+
+.search-block #search-form {
+ position: absolute;
+ width: 100%;
+ max-width: 800px;
+
+}
+
+.search-block #userid {
+  width: 324px;
+  padding: 20px;
+  border-radius: 50px;
+  border: 2px solid #ff4500;
+  background: rgb(236, 229, 229);
+  text-align: center;
+  text-shadow: 10px;
+  margin-bottom: 40px;
+}
+.search-block #userpass {
+  width: 319px;
+  padding: 20px;
+  border-radius: 50px;
+  border: 2px solid #ff4500;
+  background: rgb(236, 229, 229);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+e {
+  color: rgb(0, 0, 0);
+  text-decoration:solid;
+  font-family:cursive;
+  font-style:normal;
+  font-size: 22px;
+  justify-content: center;
+}
+b {
+  color:rgb(255, 255, 255);
+  text-decoration:solid;
+  font-family:cursive;
+  font-style:italic;
+  font-size: 18px;
+  justify-content:left;
+  font-weight: lighter
+}
+c {
+  color: #ff0000;
+  text-decoration:solid;
+  font-family:sans-serif;
+  font-style:normal;
+  font-size: 10px;
+  justify-content: center;
+  text-align: center;
+  font-weight: bolder;
+}
+
+d {
+  color:#ff0000;
+  text-decoration:solid;
+  font-family:cursive;
+  font-style:italic;
+  font-size: 18px;
+  justify-content:center;
+  font-weight: lighter
+}
+
+h1 {
+  margin-top: 0px;
+  margin-bottom: 80px;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+  color:    rgb(105, 103, 103);
+}
+
+.search-block .Signin:hover {
+  color: rgb(255, 255, 255);
+  background: rgb(255, 238, 0);
+  border: 1px solid rgb(255, 238, 0);
+  transform: scale(1.05);
+}
+
+.search-block .btn:hover {
+  color: rgb(255, 238, 0);
+  background: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 238, 0);
+  transform: scale(1.05);
+}
+
+.search-block .btn1:hover {
+  color: rgb(255, 238, 0);
+  background: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 238, 0);
+  transform: scale(1.05);
+}

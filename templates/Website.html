@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A renting platform." />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- Icon Image -->
+    <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+    <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+    <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <title>RentBazaar App using JavaScript</title>
+</head>
+
+<body>
+    <!--<img src="img/wallpaperflare.com_wallpaper (3).jpg" id="back">-->
+    <div class="wrapper">
+        <div class="search-block">
+            <a href="Website.html">
+                <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+            </a>
+            <form id="search-form">
+                <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+            </form>
+
+            <form id="search-form-2">
+                <div id="l1">
+                <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                </div>
+                <div id="l2"></div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <!--<div class="search-block-1">
+            <form id="search-form-1">
+                
+            </form>  
+        </div>-->
+        
+        <div class="Description-block">
+            
+            <form id="Description-form">
+                <div class="search-block-1">
+                    <input type="text" id="searchInput" placeholder="Search for (about) any books ...." />
+                    <button class="btn1" type="submit">Search</button>
+                    
+                    
+                </div>
+                <br>
+                <br>
+                <c>
+                    <h1>Find your required books easily</h1><div id="searchResults"></div>
+                </c>
+                <d>
+                    <h1>Rent <div id="animatedText" class="animated-text"></div>
+                    genre books<p>made easy!</p></h1>
+                </d>
+                <div class="search-block-2">
+                    <button class="btn4" type="submit">Rent</button>
+                    <button class="btn3" type="submit">Buy</button>
+                    <button class="btn5" type="submit">Sell</button>
+                </div>
+                
+            </form>
+            <img src="" alt="Trekking kit" class="image" id="image">    
+        
+        
+        </div>   
+       
+        <!--<div class="Description-block-1">-->
+                
+        </div>
+        
+        <div class="row" id="root"></div>
+        
+    </div>
+    <div id="footer">
+        &copy; 2023 RentBazaar
+    </div>
+    
+    <script defer type="module" src="../static/js/Search.js"></script>
+    <script defer type="module" src="../static/js/Firebase-user.js"></script>
+    <script type="text/javascript" src="../static/js/Redirect.js"></script>
+    <script>
+        // Array of texts to be displayed
+        const texts = [
+          "any",  
+          "action",
+          "adventure",
+          "comic",
+          "mystery",
+          "horror",
+          "fantasy"
+          // Add more texts as needed
+        ];
+    
+        // Get the animatedText element
+        const animatedText = document.getElementById('animatedText');
+    
+        // Function to change the text
+        function changeText() {
+          let index = 0;
+    
+          function updateText() {
+            animatedText.textContent = texts[index];
+            index = (index + 1) % texts.length;
+          }
+    
+          setInterval(updateText, 3000); // Change text every 3 seconds (adjust as needed)
+          updateText(); // Initial text
+        }
+    
+        // Start the animation
+        changeText();
+
+
+         // JavaScript function to change the image source
+         // Array of image sources
+        const imageSources = ['../static/img/old-books.jpg', '../static/img/Action1.png', '../static/img/Adventure1.jpg', '../static/img/Comic1.jpg', '../static/img/Mystery1.jpg', '../static/img/Horror1.jpg', '../static/img/Fantasy1.png'];
+        // Get the image element by its ID
+        const imageElement = document.getElementById('image');
+         function changeImage() {
+        
+        let index = 0;
+        function updateImg() {
+            imageElement.src = imageSources[index];
+            index = (index + 1) % imageSources.length;
+          }
+    
+          setInterval(updateImg, 3000); // Change text every 3 seconds (adjust as needed)
+          updateImg(); // Initial text    
+        
+
+        // Get a random index from the array
+        //var randomIndex = Math.floor(Math.random() * imageSources.length);
+
+        // Set the new image source
+        //imageElement.src = imageSources[];
+    }
+
+    changeImage();
+      </script>  
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>RentBazaar App using JavaScript</title>
+</head>
+
+<body>
+    
+    <div class="search-block-1">
+        <a href="Website.html">
+            <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+        </a>
+        
+        <form id="search-form">
+            <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+        </form>
+
+        <form id="search-form-2">
+            <div id="l1">
+                <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                </div>
+                <div id="l2"></div>
+        </form>
+    </div>
+    
+
+    <div class="wrapper">
+        
+
+        <div class="left-side">
+            <h1>Contact Us</h1>
+            
+                
+                <h4><i class="fas fa-map-marker-alt" id="l"></i>Address:</h4>
+                <p>Durbarmarg, Kathmandu, Nepal</p>
+          
+                
+                <h4><i class="fas fa-envelope" id="e"></i>Email: </h4>
+                <p>RentBazaar@gmail.com</p>
+          
+                
+                <h4><i class="fa-solid fa-phone" id="p"></i>Phone: </h4>
+                <p>+01 5546897<br>+977 9846 437890</p>
+            
+                <img src="../static/img/Map.PNG" alt="Application Name" id="map">
+                <!--<img src="C:\Users\Dell\img\Signin.jpg" alt="Welcome Image">-->
+        </div>
+        <!--<div class="search-block-1">
+            <form id="search-form-1">
+                
+            </form>  
+        </div>-->
+        <br>
+        <div class="search-block">
+            <c>
+            <p><i>Your Information will not be shared with others. Required field are marked *</i>
+            <br>
+            -----------------------------------------------------------------------------------------------------
+            </p>
+            </c>
+            <f>
+                <label>
+                    
+                </label>
+            </f>
+            <e>
+                <h1> Send us a message </h1>
+            </e>
+            <form class="search-form">
+                
+                    <input type="text" id="username" placeholder="Enter your name...*" name="username" required>
+                    <input type="email" id="userid" placeholder= "Enter your Email ID...*" name="userid" required> 
+                    <br>
+                    <input type="text" id="usersub" placeholder="Enter a subject...*" name="usersub" required>
+                    <br>
+                    <input type="text" id="usermess" placeholder="Enter your message...*" name="usermess" required>         
+                   
+            </form>
+            <br>
+            <br>
+            <input type="submit" class="Submit" value="Submit" onclick="validateUser();">
+            
+    </div>
+</div>
+<div id="footer">
+    &copy; 2023 RentBazaar
+</div>
+<script>
+    var WebFontConfig = {
+        custom: {
+            families: ['molle','Josefin Sans'],
+            urls: ['css/fonts.css']
+        },
+        active: function() {
+            //Game.start();
+            app.fontsLoaded();
+        }
+        
+    };  
+</script>
+<script type="module" src="../static/js/Firebase-user.js"></script>
+<script type="text/javascript" src="../static/js/Redirect.js"></script>
+</body>
+    
+</html>

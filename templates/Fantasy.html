@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+  <title>Category Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="../static/Categotery.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+ 
+</head>
+<body>
+  <div class="wrapper">
+    <div class="search-block">
+      <a href="Website.html">
+        <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+      </a>
+      <form id="search-form">
+        <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+      </form>
+
+        <form id="search-form-2">
+          <div id="l1">
+            <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+            </div>
+            <div id="l2"></div>
+          </form>
+    
+      </div>
+      
+      
+ 
+  </div>
+  
+  <div><button type="button" id="Backtodashboard1" onclick="goToPage2()">Back</button><h1>Fantasy</h1> </div>
+
+  <p id="type1">Fantasy</p>
+  
+  <div id="cards-container"></div>    
+
+  <script type="module" src="../static/js/Firebase-user.js"></script>
+  <script type="module" src="../static/js/Gettype.js"></script>
+  <script type="text/javascript" src="../static/js/Redirect.js"></script>

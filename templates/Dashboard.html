@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A renting platform." />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- Icon Image -->
+    <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+    <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+    <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+  
+    <title>User Dashboard</title>
+ 
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #dashboard {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.815);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #000000;
+      font-family: cursive;
+      
+    }
+
+    #features { 
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .feature {
+      font-size: large;
+      width: auto;
+      color: #ffffff;
+      background-color: #ff4500;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .feature:hover {
+      background-color: rgb(255, 238, 0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #userimgPlaceholder{
+
+      display: flex;
+      border: 4px solid #000000;
+      border-radius: 25px;
+      margin-left: 500px;
+    }
+
+    #useremailPlaceholder{
+      font-family:'Times New Roman', Times, serif ;
+      text-align: center;
+      font-style: italic;
+      font-size: smaller;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="search-block">
+            <a href="Website.html">
+                <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+            </a>
+            <form id="search-form">
+              <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+            </form>
+
+            <form id="search-form-2">
+              <div id="l1">
+                <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                </div>
+                <div id="l2"></div>
+            </form>
+        </div>
+        
+        
+
+  <div id="dashboard">
+    <img id="userimgPlaceholder">
+    <h2>Hello, <span id="usernamePlaceholder">Loading...</span></h2>
+    <h2><span id="useremailPlaceholder"></span></h2>
+    <br>
+    <br>
+    <div id="features">
+      <div class="feature" onclick="goToPostPage()">Post ads</div>
+      <div class="feature" onclick="goToMyAdsPage()">My Ads</div>
+      
+    </div>
+
+    <div id="featureContent"></div>
+  </div>
+
+  <footer>
+    &copy; 2023 RentBazaar
+  </footer>
+  <script defer type="module" src="../static/js/Firebase-display.js"></script>
+  <script defer type="module" src="../static/js/Firebase-user.js"></script>
+ 
+  <script type="text/javascript" src="../static/js/Redirect.js"></script>
+  <script type="module">
+    // Importing the firebase functions needed from the SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, linkWithPopup, signOut, OAuthProvider, isSignInWithEmailLink, signInWithEmailLink, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDocs, setDoc, collection, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// Initialize Cloud Firestore and get a reference to the service
+
+const firebaseConfig = {
+  apiKey: "AIzaSyATOQvBvdsCX38IvyGUjvYs9kHE6aB4iMM",
+  authDomain: "rentbazaar-aea34.firebaseapp.com",
+  projectId: "rentbazaar-aea34",
+  storageBucket: "rentbazaar-aea34.appspot.com",
+  messagingSenderId: "644873776624",
+  appId: "1:644873776624:web:6d75f162996172d0dc0135",
+  measurementId: "G-C2S3E30YTY"
+};
+
+
+// RentBazaar app's Firebase configuration
+const app = initializeApp(firebaseConfig);
+const provider = new GoogleAuthProvider(app);
+const auth = getAuth();
+
+const clouddb = getFirestore();
+const user1 = auth.currentUser;
+
+
+        
+onAuthStateChanged(auth, (user1) => {
+if (user1 !== null) {
+    user1.providerData.forEach((profile) => {
+      displayUserProfile(user1);
+      
+      
+    });
+  }
+  else {
+    // User is signed out
+    //displaySignInButton();
+     // Clear user profile container
+    alert('Please Sign In First!');
+    window.location.href = "http://127.0.0.1:5000";     
+  }
+});
+
+const signInButton = document.getElementById('btn2');
+const authContainer = document.getElementById('search-form-2');
+
+  </script>
+  <script>
+    function showFeature(featureName) {
+      const featureContent = document.getElementById('featureContent');
+
+      // Reset content
+      featureContent.innerHTML = '';
+
+      // Display feature-specific content
+      switch (featureName) {
+        case 'Profile':
+          featureContent.innerHTML = '<p>Hello, '+ user.displayName+'!</p>';
+          break;
+        case 'Messages':
+          featureContent.innerHTML = '<p>Your messages will appear here.</p>';
+          break;
+        case 'Settings':
+          featureContent.innerHTML = '<p>Adjust your settings here.</p>';
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+
+    <title>Categories</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            padding-top: 0px;
+            padding: 10px;
+        }
+
+        .category-container {
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-around;
+        }
+
+        .category-container .img{
+            color: #fff;
+        }
+        
+        .category-card {
+            
+            width: 200px;
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.432);
+            background-color: #3b3939;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-image {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .category-title {
+            color: #ffffff;
+            font-style: italic;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category-container a{
+            color: #ff7300;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="search-block">
+            <a href="Website.html">
+                <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+            </a>
+            <form id="search-form">
+                <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+            </form>
+
+            <form id="search-form-2">
+                <div id="l1">
+                    <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                    </div>
+                    <div id="l2"></div>
+            </form>
+        </div>
+    <main>
+        <h3>Categories</h3>
+        <div class="category-container">
+            <!-- Category Card 1 -->
+            <div class="category-card">
+                <img width="64" height="64" id="img" src="https://img.icons8.com/glyph-neue/64/FFFFFF/horror.png" alt="horror"/>
+                <div class="category-title">Action</div>
+                <a href="Action.html">View Books</a>
+            </div>
+
+            <!-- Category Card 2 -->
+            <div class="category-card">
+                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50//FFFFFF/adventure.png" alt="adventure"/>
+                <div class="category-title">Adventure</div>
+                <a href="Adventure.html">View Books</a>
+            </div>
+
+            <div class="category-card">
+                <img width="48" height="48" src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/wolverine.png" alt="wolverine"/>
+                <div class="category-title">Comic</div>
+                <a href="Comic.html">View Books</a>
+            </div>
+
+            <div class="category-card">
+                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50//FFFFFF/anonymous-mask.png" alt="anonymous-mask"/>
+                <div class="category-title">Mystery</div>
+                <a href="Mystery.html">View Books</a>
+            </div>
+
+            <div class="category-card">
+                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50//FFFFFF/demon-mouth.png" alt="demon-mouth"/>
+                <div class="category-title">Horror</div>
+                <a href="Horror.html">View Books</a>
+            </div>
+
+            <div class="category-card">
+                <img width="64" height="64" src="https://img.icons8.com/glyph-neue/64//FFFFFF/fantasy--v1.png" alt="fantasy--v1"/>
+                <div class="category-title">Fantasy</div>
+                <a href="Fantasy.html">View Books</a>
+            </div>
+
+            <div class="category-card">
+                <i class="fa-solid fa-gears"></i>
+                <div class="category-title">Others</div>
+               <a href="Other.html">View Books</a>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="footer">
+    &copy; 2023 RentBazaar
+</div>
+<script type="module" src="../static/js/Firebase-user.js"></script>
+<script type="text/javascript" src="../static/js/Redirect.js"></script>
+</body>
+</html>

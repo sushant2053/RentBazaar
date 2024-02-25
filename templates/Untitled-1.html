@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+  <title>Category Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #ffffff;
+    
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    section {
+      
+      padding: 20px;
+    }
+
+    .item {
+      background-color: #ffe600;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+    }
+
+    
+    .card {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 250px;
+      margin-right: 400px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    .card1 {
+      
+      background-color: #ffe600;
+      border: 8px solid #ffffff;
+      border-style:dashed;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      height: auto;
+      min-height: 300px;
+      width: auto;
+      min-width: 300px;
+      
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      background-color: #ff3300;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      
+      object-fit:fill;
+    }
+    
+    .card-content {
+      padding: 10px;
+    }
+
+    p{
+      color: black;
+      font-style: oblique;
+      font-weight: bold;
+      font-family: 'molle';
+      font-size: x-large;
+    }
+
+    #myButton{
+      margin-top:10px;
+      color: #ffffff;
+      background-color: #000000;
+      border: 18px solid #ffffff;
+      border-style:double;
+      width: auto;
+    }
+
+    #myButton:hover {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+    #myButton1{
+      color: #ffffff;
+      background-color: #ff0000;
+      border: 18px solid #000000;
+      border-style:double;
+      width: auto;
+      margin-left: 8px;
+      padding: 6px;
+    }
+
+    #myButton1:hover {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+
+    #Backtodashboard1 {
+      display: block;
+      background-color: rgb(255, 238, 0);
+      color: #ffffff;
+      border: 2px solid rgb(255, 238, 0);
+      border-radius: 50px;
+      width: 100px;
+      margin-right: 0px;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #Backtodashboard1:hover {
+      color: rgb(255, 238, 0);
+      background-color: rgb(255, 255, 255);
+      border: 2px solid rgb(255, 238, 0);
+    }
+
+    #type1{
+    display: none;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="search-block">
+      <a href="Website.html">
+        <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+      </a>
+      <form id="search-form">
+        <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+      </form>
+
+        <form id="search-form-2">
+          <div id="l1">
+            <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+            </div>
+            <div id="l2"></div>
+          </form>
+    
+      </div>
+      
+      
+ 
+  </div>
+  
+  <div><button type="button" id="Backtodashboard1" onclick="goToPage2()">Back</button><h1>Adventure</h1> </div>
+
+  
+  
+  <div id="cards-container"></div>    
+  
+  <script type="module" src="../static/js/Gettype.js"></script>
+  <script type="module" src="../static/js/Firebase-user.js"></script>
+  <script type="text/javascript" src="../static/js/Redirect.js"></script>

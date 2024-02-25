@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="script1.css">
+
+    <title>Sign In</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left-side">
+            <img src="C:\Users\Dell\img\Signin.jpg" alt="Welcome Image">
+        </div>
+        <div class="search-block">
+            <c>
+                <h1> Enter Your Credentials </h1>
+            </c>
+            <form class="search-form">
+                <b>
+                    <label for="userid">Email ID: </label>
+                </b>
+                <d style="color: white;">
+                    <input type="text" id="userid" placeholder= "Enter your Email ID" name="userid" required> 
+                </d>
+                <br>
+                <b><label for="userpass">Password: </label></b>
+                <input type="password" id="userpass" placeholder="Enter your Password" name="userpass" required>         
+            </form>
+            <br>
+            <br>
+            <input type="button" class="Signin" value="Sign In" onclick="validateUser();">
+            <br>
+            <p>Don't have an account? <a href="Registration.html">Register here.</a></p>
+            <br>
+            <d><label>------------------  OR  ------------------</label></d>
+            <br>
+            <e href="/"><button class="btn" type="submit"><img src="C:\Users\Dell\img\Capture.PNG" alt="Submit Button" /></button></a>
+            <br>
+            <br>
+            <e href="/"><button class="btn1" type="submit"><img src="C:\Users\Dell\img\microsoft login.PNG" alt="Submit Button" /></button></a>
+    </div>
+</div>
+    
+</body>
+    
+</html>
+    

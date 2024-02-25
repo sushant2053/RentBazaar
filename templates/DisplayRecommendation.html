@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+
+  <title>Book Recommender System</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;  
+    }
+
+    #dashboard {
+      width: 80%;
+      height: auto;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.815);
+    }
+
+    h1 {
+      color: #ff3300;
+      font-family: fantasy;
+      font-style: italic;
+      margin-left: 500px;
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: #000000;
+      font-family: cursive;
+      font-style: oblique;
+    }
+
+    #recommendations { 
+      width: auto;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .feature {
+      color: #ffffff;
+      background-color: rgb(255, 238, 0);
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .feature:hover {
+      background-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #userimgPlaceholder{
+      display: flex;
+      border: 4px solid #000000;
+      border-radius: 25px;
+      place-content: right;
+    }
+
+    .card img {
+      width: 100%;
+      height: 350px;
+      justify-content: space-between;
+      object-fit:fill;
+    }
+    
+    .card #text {
+      color: #ffffff;  
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-style: oblique;
+      font-size: large;
+      
+      border: 14px double #ffffff;  
+      
+    }
+
+    .card {
+      background-color:#ff3300;
+      border: 18px solid #ffffff;
+      border-style:double;
+      border-radius: 8px;
+      
+      width: 250px;
+      
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      background-color: #ffe600;
+      border: 18px solid #ffffff;
+      border-style:double;
+      overflow:hidden;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 10px;
+    }
+
+    #btn {
+     font-family: cursive;
+     font-size: large;
+      font-style: oblique;
+      background-color: #ff3300;
+      color: #ffffff;
+      border: 2px solid #ff3300;
+      border-radius: 50px;
+      width: auto;
+      margin-left: 590px;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #btn:hover {
+      color: rgb(255, 255, 255);
+      background-color: rgb(255, 238, 0);
+      border: 2px solid rgb(255, 238, 0);
+    }
+    
+    #Backtodashboard1 {
+      
+      background-color: #ff3300;
+      color: #ffffff;
+      border: 2px solid #ff3300;
+      border-radius: 50px;
+      width: 100px;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #Backtodashboard1:hover {
+      color: rgb(255, 255, 255);
+      background-color: rgb(255, 238, 0);
+      border: 2px solid rgb(255, 238, 0);
+    }
+
+    #bookInput{
+        width: 500px;
+        padding: 20px;
+        border-radius: 50px;
+        border: 4px solid #ff3300;
+        background: rgb(255, 255, 255);
+        margin-left: 20px;
+        margin-bottom: 40px;
+    }
+
+    #inputlabel {
+        font-size: x-large;
+        font-family: cursive;
+        margin-left: 200px;
+    } 
+
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="search-block">
+          <a href="Website.html">
+            <img src="../static/img/RentBazaar.PNG" alt="Application Name" id="logo">
+          </a>
+          <form id="search-form">
+            <button class="btn" type="button"><a href="http://127.0.0.1:5000"><i class="fa-solid fa-house"></i>Home</a></button>
+                <button class="btn" type="button" onclick="goToPage2()"><i class="fa-solid fa-icons"></i>Categories</button>
+                <button class="btn" type="button" onclick="goToPage3()"><i class="fa-solid fa-gauge-simple-high"></i>Dashboard</button>
+                <button class="btn" type="button" onclick="goToPage4()"><i class="fa-solid fa-address-book"></i>Contact</button>
+                <button class="btn" type="button" onclick="goToPage5()"><i class="fa-solid fa-magnifying-glass"></i>Recommender</a></button>
+          </form>
+    
+            <form id="search-form-2">
+                <div id="l1">
+                    <button class="btn2" type="button" onclick="goToPage1()"><i class="fa-solid fa-circle-user"></i>Sign In</button>
+                    </div>
+                    <div id="l2"></div>
+              </form>
+        
+          </div>
+          
+          
+     
+      </div>
+      <div><button type="button" id="Backtodashboard1" onclick="goToDashboard()">Back</button></div>
+    <h1>Book Recommender System</h1>
+    <br>
+    <label for="bookInput" id="inputlabel">Type or select a book:</label>
+    <select id="bookInput">
+        {% for book in book_names %}
+            <option value="{{ book }}">{{ book }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button onclick="showRecommendation()" id="btn">Show Recommendation</button>
+    <div id="recommendations"></div>
+
+    <script type="module" src="..\static\js\Firebase-user.js"></script>
+    <script type="text/javascript" src="..\static\js\Redirect.js"></script>
+    <script>
+        function showRecommendation() {
+            const selectedBook = document.getElementById('bookInput').value;
+
+            // Send a POST request to the Flask server
+            fetch('http://127.0.0.1:5000/recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selected_book: selectedBook }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display recommendations in the UI
+                const recommendationsContainer = document.getElementById('recommendations');
+                recommendationsContainer.innerHTML = '';
+
+                // Check if data.books_list is defined and is an array
+                if (data && data.books_list && Array.isArray(data.books_list)) {
+                    data.books_list.forEach((book, index) => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+
+                        const bookName = document.createElement('div');
+                        bookName.textContent = book;
+                        bookName.id = 'text';
+                        card.appendChild(bookName);
+
+                        const img = document.createElement('img');
+                        img.src = data.poster_url[index];
+                        card.appendChild(img);
+
+                        recommendationsContainer.appendChild(card);
+                    });
+                } else {
+                    // Handle the case where data.books_list is undefined or not an array
+                    console.error('Invalid or missing data.books_list:', data && data.books_list);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+</html>

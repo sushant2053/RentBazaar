@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A renting platform." />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+  <!-- Icon Image -->
+  <link rel="icon" type="image/png" href="../static/img/logo_size_1.png" />
+  <link rel="shortcut icon" href="../static/img/Logo1-removebg-preview.png" />
+  <link rel="apple-touch-icon-precomposed" href="../static/img/logo_size_invert_1.jpg"/>
+
+    <title>Registration Page</title>
+    <style>
+        body {
+            color: rgb(0, 0, 0);
+            font-family:'Courier New', Courier, monospace;
+            background: #ffffff;
+            
+        }
+
+        .left-side {
+            flex: 2;
+            padding: 40px;
+            
+        }
+
+        .left-side img {
+            width: 100%; /* Make the image fill its container */
+            height: 80%; /* Maintain the image's aspect ratio */
+            display: block; /* Remove any extra spacing */
+            border-radius: 25px;
+        }
+
+        .search-block {
+            flex: 1;
+            padding: 175px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            
+        }
+
+        .search-block #userid {
+            width: 324px;
+            padding: 20px;
+            border-radius: 50px;
+            border: 2px solid #ff4500;
+            background: rgb(236, 229, 229);
+            text-align: center;
+            text-shadow: 10px;
+            margin-bottom: 40px;
+        }
+        .search-block #userpass {
+            width: 319px;
+            padding: 20px;
+            border-radius: 50px;
+            border: 2px solid #ff4500;
+            background: rgb(236, 229, 229);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .wrapper {
+            display: flex;
+            height:auto;
+            
+            
+            
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 50px;
+            border: 2px solid #ff4500;
+            background: rgb(236, 229, 229);
+            text-align: center;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group p {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        ::placeholder { /* Most modern browsers support this now. */
+            color:    rgb(105, 103, 103);
+        }
+
+        .Register {
+            color: #ffffff;
+            background-color: #ff4500;
+            cursor: pointer;
+            font-size: 18px;
+            font-family:sans-serif;
+            text-decoration: solid;
+            padding: 12px 8px 12px 2px;
+            border: 2px solid #ff4500;
+            border-radius: 10px;
+            transition:all;
+            text-align: center;
+            width: 150px;
+            align-content: right;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 90px;
+        }
+
+        .search-block .Register:hover {
+            color: #ffffff;
+            font-size: large;
+            background: rgb(255, 238, 0);
+            border: 2px solid rgb(255, 238, 0);
+        }
+
+        c {
+            color: #ff4500;
+            text-decoration:solid;
+            font-family:sans-serif;
+            font-style:normal;
+            font-size: 20px;
+            justify-content: center;
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #0400ff;
+            
+        }
+
+        
+    </style>
+</head>
+<body>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
+    
+        // Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js'
+    
+        // Firebase products 
+        import { getAuth, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js'
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVxEskCjFVcwLq4QFptZKxuRTEsJEtlSU",
+            authDomain: "tomath-404215.firebaseapp.com",
+            databaseURL: "https://tomath-404215-default-rtdb.firebaseio.com",
+            projectId: "tomath-404215",
+            storageBucket: "tomath-404215.appspot.com",
+            messagingSenderId: "651645390180",
+            appId: "1:651645390180:web:e616af808822e72a4b7e71",
+            measurementId: "G-WMXP56QQ4V"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        
+        // Initialize Firebase Realtime Database
+        const db = getFirestore();
+        
+        // Click event
+        document.getElementsByClassName('Register').addEventListener('click', registerUser);
+        function registerUser() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            console.log(email, password)
+            
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((result) => {
+                    // Change the URL to the sign in page
+                    window.location.href = 'Website.html';                    
+                    
+                })
+                .catch((error) => {
+                    // Error handling
+                    console.log(error.code);
+                    console.log(error.message);
+                    
+                });
+        }
+
+function saveUserData(userId, userData) {
+// Save user data to the "users" node in the database
+db.ref('users/' + userId).set(userData);
+}
+</script>
+    
+<div class="wrapper">
+        <div class="left-side">
+            <img src="..\static\img\Registration2.png" alt="Welcome Image">
+        </div>
+        <div class="search-block">
+            <c>
+                <h2>Registration</h2>
+            </c>
+            <form>
+                <div class="form-group">
+                    <label for="username">Name:<e style="color:red;">*</e></label>
+                    <input type="text" id="username" placeholder="Enter your name" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Mobile no:<e style="color:red;">*</e></label>
+                    <input type="number" id="mobnumb" placeholder="Enter your mobile number" name="mobnumb" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:<e style="color:red;">*</e></label>
+                    <input type="email" id="email" placeholder="Enter your E-mail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:<e style="color:red;">*</e></label>
+                    <input type="password" id="password" placeholder="Enter your password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Re-Enter Password:<e style="color:red;">*</e></label>
+                    <input type="password" id="password1" placeholder="Re-enter your password" name="password1" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="Register">Register</button>
+                </div>
+                <div class="form-group">
+                    <p>Already have an account? <a href="Signin.html">Sign-In here</a></p>
+                </div>
+            </form>
+            <br>
+        </div>    
+    </div>
+    
+</body>
+    
+</html>

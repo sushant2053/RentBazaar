@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload and Download</title>
+  <style>
+    img {
+      height: 200px;
+      width: 200px;
+      border: 2px black solid;
+      margin-top: 10px;
+    }
+
+    label {
+      margin-top: 10px;
+      display: block;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    #upprogress {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <label>Image Name</label>
+  <input type="text" id="namebox">
+  <label id="extlab"></label>
+  <br>
+  <br>
+  <img id="myimg">
+  <label id="upprogress"></label>
+  <br>
+  <br> 
+  
+  <input type="file" id="selbtn" name="itemImage" accept="image/*" >
+  <button id="upbtn">Upload Image</button>
+  <button id="downbtn">Retrieve Image</button>
+
+  <script type="module">
+    // Your existing Firebase and other imports...
+// Importing the firebase functions needed from the SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// Initialize Cloud Firestore and get a reference to the service
+
+const firebaseConfig = {
+  apiKey: "AIzaSyATOQvBvdsCX38IvyGUjvYs9kHE6aB4iMM",
+  authDomain: "rentbazaar-aea34.firebaseapp.com",
+  projectId: "rentbazaar-aea34",
+  storageBucket: "rentbazaar-aea34.appspot.com",
+  messagingSenderId: "644873776624",
+  appId: "1:644873776624:web:6d75f162996172d0dc0135",
+  measurementId: "G-C2S3E30YTY"
+};
+
+
+// RentBazaar app's Firebase configuration
+const app = initializeApp(firebaseConfig);
+const clouddb = getFirestore();
+
+
+
+    // Rest of your existing code...
+    var files = [];
+    var reader = new FileReader();
+    var namebox = document.getElementById('namebox');
+    var extlab = document.getElementById('extlab');
+    var myimg = document.getElementById('myimg');
+    var proglab = document.getElementById('upprogress');
+    var SelBtn = document.getElementById('selbtn');
+    var UpBtn = document.getElementById('upbtn');
+    var DownBtn = document.getElementById('downbtn');
+
+    
+
+    selbtn.onchange = e =>{
+      files = e.target.files;
+      var extention = GetExtName(files[0]);
+      var name = GetFileName(files[0]);
+      namebox.value = name;
+      extlab.innerHTML = extention;
+      reader.readAsDataURL(files[0]);
+    }
+
+    reader.onload = function(){
+      myimg.src = reader.result;
+    }
+
+    function GetExtName(file) {
+      var temp = file.name.split('.');
+      var ext = temp.slice((temp.length - 1),(temp.length));
+      return '.' + ext[0];
+    }
+
+    function GetFileName(file) {
+      var temp = file.name.split('.');
+      var fname = temp.slice(0,-1).join('.');
+      return fname;
+    }
+
+    async function UploadProcess(){
+        var ImgToUpload = files[0];
+        var ImgName = namebox.value + extlab.innerHTML;
+        const metaData = {
+            contentType: ImgToUpload.type
+        }
+        const storage = getStorage();
+        const stroageRef = sRef(storage, "Images/"+ImgName);
+        const UploadTask = uploadBytesResumable(stroageRef, ImgToUpload, metaData);
+
+        UploadTask.on('state-changed', (snapshot)=>{
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            proglab.innerHTML = "Upload "+ progress + "%";
+        },
+        (error) =>{
+            alert("error: image not uploded!");
+        },
+        ()=>{
+            getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+                SaveURLtoFirestore(downloadURL);
+
+            });
+        }
+        );
+    }
+
+async function SaveURLtoFirestore(url){
+    var name = namebox.value;
+    var ext = extlab.innerHtml;
+
+    var ref = doc(clouddb, "Rent/"+name);
+
+    await setDoc(ref,{
+        ImageName: (name+ext),
+        ImageURL: url
+    })
+}
+
+async function GetImagefromFirestore(){
+    var name = namebox.value;
+    var ref = doc(clouddb, "Rent/"+name);
+    const docSnap = await getDoc(ref);
+
+    if(docSnap.exists()){
+        myimg.src = docSnap.data().ImageURL;
+    }
+}
+
+UpBtn.onclick = UploadProcess;
+DownBtn.onclick = GetImagefromFirestore;    
+  </script>
+</body>
+</html>
